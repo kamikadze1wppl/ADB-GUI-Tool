@@ -7,104 +7,109 @@ from subprocess import Popen
 
 # Commands with no arguments
 def reboot():
-    call("adb reboot")
+    call(["/usr/bin/adb", "reboot"])
 
 def rebootrecovery():
-    call("adb reboot recovery")
+    call(["/usr/bin/adb", "reboot", "recovery"])
 
 def rebootfastboot():
-    call("adb reboot fastboot")
+    call(["/usr/bin/adb", "reboot", "fastboot"])
 
 def logcat():
-    call("adb logcat")
+    call(["/usr/bin/adb", "logcat"])
 
 def getstatedevice():
-    call("adb get-state device")
+    call(["/usr/bin/adb", "get-state", "device"])
 
 def getsn():
-    call("adb get-serialno")
+    call(["/usr/bin/adb", "get-serialno"])
 
 def startserver():
-    call("adb start-server")
+    call(["/usr/bin/adb", "start-server"])
 
 def killserver():
-    call("adb kill-server")
+    call(["/usr/bin/adb", "kill-server"])
 
 def reconnecthost():
-    call("adb reconnect")
+    call(["/usr/bin/adb", "reconnect"])
 
 def reconnectdevice():
-    call("adb reconnect device")
+    call(["/usr/bin/adb", "reconnect", "device"])
 
 def reconnectoffline():
-    call("adb reconnect offline")
+    call(["/usr/bin/adb", "reconnect", "offline"])
     
 def remount():
-    call("adb remount")
+    call(["/usr/bin/adb", "remount"])
     
 def root():
-    call("adb root")
+    call(["/usr/bin/adb", "root"])
     
 def rebootbootloader():
-    call("adb reboot bootloader")
+    call(["/usr/bin/adb", "reboot", "bootloader"])
     
 def devices():
-    call("adb devices")
+    call(["/usr/bin/adb", "devices"])
 
 # Shell
 
 def shell():
-    Popen(["adb", "shell"])
+    Popen(["/usr/bin/adb", "shell"])
     
 def androidversion():
-    Popen(["adb", "shell", "getprop", "ro.build.version.release"])
+    Popen(["/usr/bin/adb", "shell", "getprop", "ro.build.version.release"])
     
 def getapps():
-    Popen(["adb", "shell", "list", "packages", "-r"])
+    Popen(["/usr/bin/adb", "shell", "list", "packages", "-r"])
 
 ## Commands that have arguments
 def install():
     arg = argument.get()
-    call(f"adb install {arg}")
+    # Updated: Arguments are separate list items
+    call(["/usr/bin/adb", "install", arg])
     
 def pull():
     arg = argument.get()
-    call(f"adb pull {arg}")
+    # Updated: Arguments are separate list items
+    call(["/usr/bin/adb", "pull", arg])
     
 def push():
     arg = argument.get()
     arg2 = argument2.get()
-    call(f"adb push {arg} {arg2}")
+    # Updated: Arguments are separate list items
+    call(["/usr/bin/adb", "push", arg, arg2])
     
 def sideload():
     arg = argument.get()
-    call(f"adb sideload {arg}")
+    # Updated: Arguments are separate list items
+    call(["/usr/bin/adb", "sideload", arg])
 
 def uninstall():
     arg = argument.get()
-    call(f"adb uninstall {arg}")
+    # Updated: Arguments are separate list items
+    call(["/usr/bin/adb", "uninstall", arg])
 
 # Fastboot button commands
 def fastboot_devices():
-    Popen(["fastboot", "devices"])
+    Popen(["/usr/bin/fastboot", "devices"])
     
 def fastboot_reboot():
-    Popen(["fastboot", "reboot"])
+    Popen(["/usr/bin/fastboot", "reboot"])
     
 def fastboot_reboot_recovery():
-    Popen(["fastboot", "reboot", "recovery"])
+    Popen(["/usr/bin/fastboot", "reboot", "recovery"])
     
 def fastboot_unlock():
-    Popen(["fastboot", "flashing", "unlock"])
+    Popen(["/usr/bin/fastboot", "flashing", "unlock"])
     
 def fastboot_lock():
-    Popen(["fastboot", "flashing", "lock"])
+    Popen(["/usr/bin/fastboot", "flashing", "lock"])
     
 def fastboot_critical_unlock():
-    Popen(["fastboot", "flashing", "unlock_critical"])
+    Popen(["/usr/bin/fastboot", "flashing", "unlock_critical"])
     
 def fastboot_critical_lock():
-    Popen(["fastboot", "flashing", "lock_critical"])
+    Popen(["/usr/bin/fastboot", "flashing", "lock_critical"])
 
 # Setting appearance and theme
 ctk.set_appearance_mode("dark")
